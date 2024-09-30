@@ -7,7 +7,7 @@ from termcolor import colored
 from omegaconf import OmegaConf
 
 from common import TASK_SET
-
+from torchrl._utils import timeit
 
 CONSOLE_FORMAT = [
 	("iteration", "I", "int"),
@@ -238,3 +238,5 @@ class Logger:
 				self._log_dir / "eval.csv", header=keys, index=None
 			)
 		self._print(d, category)
+		timeit.print()
+		timeit.erase()

@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 import torch.nn.functional as F
+from torchrl._utils import timeit
 
 from common import math
 from common.scale import RunningScale
@@ -225,7 +226,8 @@ class TDMPC2:
 		Returns:
 			dict: Dictionary of training statistics.
 		"""
-		obs, action, reward, task = buffer.sample()
+		with timeit("sample"):
+			obs, action, reward, task = buffer.sample()
 	
 		# Compute targets
 		with torch.no_grad():
